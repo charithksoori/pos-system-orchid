@@ -9,17 +9,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginFormController {
+public class SignUpFormController {
     public JFXTextField txtEmail;
     public JFXTextField txtPassword;
     public AnchorPane context;
 
-    public void btnSignInOnAction(ActionEvent actionEvent) {
-        //login
+    public void btnRegisterNowOnAction(ActionEvent actionEvent) {
     }
 
-    public void btnCreateOnAccountOnAction(ActionEvent actionEvent) throws IOException {
-        setUi("SignUpForm");
+    public void btnAlreadyHaveAnAccountOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("LoginForm");
     }
 
     private void setUi(String url) throws IOException {
