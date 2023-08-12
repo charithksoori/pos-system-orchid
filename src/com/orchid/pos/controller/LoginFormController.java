@@ -2,7 +2,6 @@ package com.orchid.pos.controller;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import com.mysql.cj.protocol.Resultset;
 import com.orchid.pos.util.PasswordManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +33,7 @@ public class LoginFormController {
                 if(PasswordManager.checkPassword(txtPassword.getText(),set.getString("password"))){
                     System.out.println("Completed");
                 }else{
-                    new Alert(Alert.AlertType.WARNING,"CHeck your password and try again!").show();
+                    new Alert(Alert.AlertType.WARNING,"Check your password and try again!").show();
                 }
 
             }else{
