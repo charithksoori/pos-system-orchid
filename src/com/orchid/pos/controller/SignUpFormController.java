@@ -2,6 +2,7 @@ package com.orchid.pos.controller;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.orchid.pos.dao.DatabaseAccessCode;
 import com.orchid.pos.util.PasswordManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -25,14 +26,7 @@ public class SignUpFormController {
 
     public void btnRegisterNowOnAction(ActionEvent actionEvent) {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection =DriverManager.getConnection("jdbc:mysql://localhost:3306/pos_orchid","root","1241");
-            String sql = "INSERT INTO user VALUES (?,?)";
-            PreparedStatement preparedStatement= connection.prepareStatement(sql);
-            preparedStatement.setString(1,txtEmail.getText());
-            preparedStatement.setString(2, PasswordManager.encryptPassword(txtPassword.getText()));
-
-            if(preparedStatement.executeUpdate()>0){
+            if(DatabaseAccessCode.createUser(txtEmail.getText(),txtPassword.getText())){
                 new Alert(Alert.AlertType.CONFIRMATION, "User Saved!").show();
                 clearFields();
             }else{
