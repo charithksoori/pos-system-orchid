@@ -69,7 +69,7 @@ public class DatabaseAccessCode {
         preparedStatement.setString(1,email);
         ResultSet resultSet= preparedStatement.executeQuery();
         if(resultSet.next()){
-            return new CustomerDto(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3),resultSet.getDouble(4))
+            return new CustomerDto(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3),resultSet.getDouble(4));
         }
         return null;
     }
@@ -90,7 +90,7 @@ public class DatabaseAccessCode {
         PreparedStatement preparedStatement= connection.prepareStatement(sql);
         ResultSet resultSet= preparedStatement.executeQuery();
 
-        List<CustomerDto> dtos = new ArrayList<>()
+        List<CustomerDto> dtos = new ArrayList<>();
         while(resultSet.next()){
             dtos.add( new CustomerDto(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3),resultSet.getDouble(4)));
         }
@@ -108,7 +108,7 @@ public class DatabaseAccessCode {
         preparedStatement.setString(2,searchText);
         ResultSet resultSet= preparedStatement.executeQuery();
 
-        List<CustomerDto> dtos = new ArrayList<>()
+        List<CustomerDto> dtos = new ArrayList<>();
         while(resultSet.next()){
             dtos.add( new CustomerDto(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3),resultSet.getDouble(4)));
         }
