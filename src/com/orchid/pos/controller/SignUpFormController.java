@@ -32,19 +32,12 @@ public class SignUpFormController {
             }else{
                 new Alert(Alert.AlertType.WARNING, "Try Again").show();
             }
-
-
-
-
         }catch(ClassNotFoundException | SQLException e){
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
-
-
-
-
     }
+
 
     private void clearFields() {
         txtEmail.clear();
