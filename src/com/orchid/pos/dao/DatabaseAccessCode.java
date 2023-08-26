@@ -1,5 +1,6 @@
 package com.orchid.pos.dao;
 
+import com.orchid.pos.db.DbConnection;
 import com.orchid.pos.dto.CustomerDto;
 import com.orchid.pos.dto.UserDto;
 import com.orchid.pos.util.PasswordManager;
@@ -38,10 +39,8 @@ public class DatabaseAccessCode {
 
     //customer management
     public static boolean createCustomer(String email, String name, String contact,double salary) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos_orchid","root","1241");
         String sql = "INSERT INTO customer VALUES (?,?,?,?)";
-        PreparedStatement preparedStatement= connection.prepareStatement(sql);
+        PreparedStatement preparedStatement= DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1,email);
         preparedStatement.setString(2, name);
         preparedStatement.setString(3, contact);
@@ -50,10 +49,8 @@ public class DatabaseAccessCode {
     }
 
     public static boolean updateCustomer(String email, String name, String contact,double salary) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos_orchid","root","1241");
         String sql = "UPDATE customer SET name=?, contact=? , salary=? WHERE email=?";
-        PreparedStatement preparedStatement= connection.prepareStatement(sql);
+        PreparedStatement preparedStatement= DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, name);
         preparedStatement.setString(2, contact);
         preparedStatement.setDouble(3, salary);
@@ -62,10 +59,8 @@ public class DatabaseAccessCode {
     }
 
     public static CustomerDto findCustomer(String email) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos_orchid","root","1241");
         String sql = "SELECT * FROM customer WHERE email=?";
-        PreparedStatement preparedStatement= connection.prepareStatement(sql);
+        PreparedStatement preparedStatement= DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1,email);
         ResultSet resultSet= preparedStatement.executeQuery();
         if(resultSet.next()){
@@ -75,19 +70,16 @@ public class DatabaseAccessCode {
     }
 
     public static boolean deleteCustomer(String email) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos_orchid","root","1241");
         String sql = "DELETE FROM customer WHERE email=?";
-        PreparedStatement preparedStatement= connection.prepareStatement(sql);
+        PreparedStatement preparedStatement= DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, email);
         return preparedStatement.executeUpdate()>0;
     }
 
     public static List<CustomerDto> findAllCustomers() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos_orchid","root","1241");
+
         String sql = "SELECT * FROM customer";
-        PreparedStatement preparedStatement= connection.prepareStatement(sql);
+        PreparedStatement preparedStatement= DbConnection.getInstance().getConnection().prepareStatement(sql);
         ResultSet resultSet= preparedStatement.executeQuery();
 
         List<CustomerDto> dtos = new ArrayList<>();
@@ -100,10 +92,8 @@ public class DatabaseAccessCode {
 
         searchText = "%"+searchText+"%";
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos_orchid","root","1241");
         String sql = "SELECT * FROM customer WHERE email LIKE  ? || name LIKE ?";
-        PreparedStatement preparedStatement= connection.prepareStatement(sql);
+        PreparedStatement preparedStatement= DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1,searchText);
         preparedStatement.setString(2,searchText);
         ResultSet resultSet= preparedStatement.executeQuery();
