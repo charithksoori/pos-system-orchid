@@ -35,7 +35,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="865.0" layoutY="42.0" style="-fx-background-color: #3498db;" text="+ New Customer" textFill="WHITE">
+      <JFXButton layoutX="865.0" layoutY="42.0" onAction="#btnNewCustomerOnAction" style="-fx-background-color: #3498db;" text="+ New Customer" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -63,7 +63,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXTextField>
-      <JFXButton fx:id="btnSaveUpdate" layoutX="875.0" layoutY="196.0" onAction="#btnSaveUpdateOnAction" prefHeight="39.0" prefWidth="157.0" style="-fx-background-color: #3498db;" text="Save Customer" textFill="WHITE">
+      <JFXButton fx:id="btnSaveUpdate" layoutX="821.0" layoutY="196.0" onAction="#btnSaveUpdateOnAction" prefHeight="39.0" prefWidth="211.0" style="-fx-background-color: #3498db;" text="Save Customer" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
