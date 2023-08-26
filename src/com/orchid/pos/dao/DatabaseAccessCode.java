@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DatabaseAccessCode {
 
-    //user management
+    //=========user management==============================
     public static boolean createUser(String email, String password) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos_orchid","root","1241");
@@ -35,9 +35,9 @@ public class DatabaseAccessCode {
         }
         return null;
     }
+    //=========user management==============================
 
-
-    //customer management
+    //=========customer management==============================
     public static boolean createCustomer(String email, String name, String contact,double salary) throws ClassNotFoundException, SQLException {
         String sql = "INSERT INTO customer VALUES (?,?,?,?)";
         PreparedStatement preparedStatement= DbConnection.getInstance().getConnection().prepareStatement(sql);
@@ -105,6 +105,7 @@ public class DatabaseAccessCode {
         return dtos;
     }
 
+    //=========customer management==============================
 
 
 }
